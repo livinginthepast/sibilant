@@ -14,6 +14,9 @@ defmodule Sibilant.Frontmatter do
 
   defp into_frontmatter({:ok, map}) do
     {matched, extra} = map |> Map.split(~w{layout title})
-    {:ok, new(layout: matched["layout"], title: matched["title"], extra: extra)}
+    {:ok, new(layout: layout(matched), title: matched["title"], extra: extra)}
   end
+
+  defp layout(%{"layout" => layout}), do: String.to_atom(layout)
+  defp layout(_), do: :default
 end

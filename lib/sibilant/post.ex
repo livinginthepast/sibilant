@@ -3,9 +3,7 @@ defmodule Sibilant.Post do
 
   defstruct ~w{
     body
-    extra
-    layout
-    title
+    frontmatter
   }a
 
   def new(attrs), do: __struct__(attrs)
@@ -13,6 +11,6 @@ defmodule Sibilant.Post do
   def parse(content) do
     [front | [body]] = String.split(content, "\n---\n")
     {:ok, frontmatter} = Frontmatter.parse(front)
-    new(body: body, layout: frontmatter.layout, extra: frontmatter.extra)
+    new(body: body, frontmatter: frontmatter)
   end
 end

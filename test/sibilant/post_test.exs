@@ -1,11 +1,8 @@
 defmodule Sibilant.PostTest do
   use Sibilant.SimpleCase, async: true
 
+  alias Sibilant.Frontmatter
   alias Sibilant.Post
-
-  describe "load" do
-    test ""
-  end
 
   describe "parse" do
     test "splits front matter from body" do
@@ -25,11 +22,13 @@ defmodule Sibilant.PostTest do
       |> Sibilant.Post.parse()
       |> assert_eq(%Post{
         body: "\nI am a web page.\n\n* I\n* Have\n* A\n* List\n",
-        layout: "something",
-        extra: %{
-          "something" => "else"
-        },
-        title: nil
+        frontmatter: %Frontmatter{
+          layout: :something,
+          extra: %{
+            "something" => "else"
+          },
+          title: nil
+        }
       })
     end
   end

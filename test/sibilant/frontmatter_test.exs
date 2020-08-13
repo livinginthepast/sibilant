@@ -15,7 +15,7 @@ defmodule Sibilant.FrontmatterTest do
       |> assert_eq(
         {:ok,
          %Frontmatter{
-           layout: "my_layout",
+           layout: :my_layout,
            title: "I am a title",
            extra: %{"random" => "thing"}
          }}
@@ -29,7 +29,7 @@ defmodule Sibilant.FrontmatterTest do
       |> assert_eq(
         {:ok,
          %Frontmatter{
-           layout: nil,
+           layout: :default,
            title: nil,
            extra: %{}
          }}
