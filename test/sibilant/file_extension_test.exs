@@ -13,11 +13,11 @@ defmodule Sibilant.FileExtensionTest do
     end
 
     test "is {:error, :unknown_extension} when no known pattern matches the file extension" do
-      "yo.yoyoyo" |> FileExtension.parse() |> assert_eq({:error, :unknown_extension})
+      "yo.yoyoyo" |> FileExtension.parse() |> assert_eq({:error, :unknown_file_type})
     end
 
-    test "allows for overrides to configuration" do
-      :ok = Gestalt.replace_config(:sibilant, :extensions, [yoyo: ~r"yoyo"], self())
+    test "allows for overrides to file_types configuration" do
+      :ok = Gestalt.replace_config(:sibilant, :file_types, [yoyo: [pattern: ~r"yoyo"]], self())
       "yo.yoyoyo" |> FileExtension.parse() |> assert_eq({:ok, :yoyo})
     end
   end

@@ -1,8 +1,8 @@
-defmodule Sibilant.Parser.Liquid do
-  @behaviour Sibilant.Parser
+defmodule Sibilant.Compiler.Liquid do
+  @behaviour Sibilant.Compiler
 
   @impl true
-  def parse(content) do
+  def compile(content) do
     template = Liquid.Template.parse(content)
 
     Liquid.Template.render(template, %{})

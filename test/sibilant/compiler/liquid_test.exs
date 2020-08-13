@@ -1,16 +1,16 @@
-defmodule Sibilant.Parser.LiquidTest do
+defmodule Sibilant.Compiler.LiquidTest do
   use Sibilant.SimpleCase
 
   describe "parse" do
-    import Sibilant.Parser.Liquid, only: [parse: 1]
+    import Sibilant.Compiler.Liquid, only: [compile: 1]
 
-    test "parses text with default liquid syntax" do
+    test "compiles text with default liquid syntax" do
       """
       {% assign a='b' %}{{ a }}
 
       With static text.
       """
-      |> parse()
+      |> compile()
       |> assert_eq({
         :ok,
         """
@@ -28,7 +28,7 @@ defmodule Sibilant.Parser.LiquidTest do
 
         With static text.
         """
-        |> parse()
+        |> compile()
       end
     end
   end

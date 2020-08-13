@@ -1,10 +1,10 @@
-defmodule Sibilant.Parser.Markdown do
-  @behaviour Sibilant.Parser
+defmodule Sibilant.Compiler.Markdown do
+  @behaviour Sibilant.Compiler
 
   use Gestalt
 
   @impl true
-  def parse(content) do
+  def compile(content) do
     content
     |> Earmark.as_html(earmark_config())
     |> respond()

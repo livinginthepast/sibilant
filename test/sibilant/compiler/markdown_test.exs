@@ -1,8 +1,8 @@
-defmodule Sibilant.Parser.MarkdownTest do
+defmodule Sibilant.Compiler.MarkdownTest do
   use Sibilant.SimpleCase
 
   describe "earmark_config" do
-    import Sibilant.Parser.Markdown, only: [earmark_config: 0]
+    import Sibilant.Compiler.Markdown, only: [earmark_config: 0]
 
     test "provides default values for Earmark" do
       earmark_config()
@@ -27,10 +27,10 @@ defmodule Sibilant.Parser.MarkdownTest do
     end
   end
 
-  describe "parse" do
-    import Sibilant.Parser.Markdown, only: [parse: 1]
+  describe "compile" do
+    import Sibilant.Compiler.Markdown, only: [compile: 1]
 
-    test "parses markdown to HTML" do
+    test "compiles markdown to HTML" do
       """
       I have some text.
       And other text.
@@ -44,7 +44,7 @@ defmodule Sibilant.Parser.MarkdownTest do
       1. This is
       1. An ordered list
       """
-      |> parse()
+      |> compile()
       |> assert_eq(
         {:ok,
          """
@@ -83,7 +83,7 @@ defmodule Sibilant.Parser.MarkdownTest do
 
       And---some other text.
       """
-      |> parse()
+      |> compile()
       |> assert_eq(
         {:ok,
          """

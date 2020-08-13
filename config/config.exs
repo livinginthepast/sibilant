@@ -1,8 +1,8 @@
 use Mix.Config
 
-config :sibilant, :extensions,
-  html: ~r"^(html|htm)$",
-  markdown: ~r"^(md|markdown)$"
+config :sibilant, :file_types,
+  html: [compiler: Sibilant.Compiler.Noop, pattern: ~r"^(html|htm)$"],
+  markdown: [compiler: Sibilant.Compiler.Markdown, pattern: ~r"^(md|markdown)$"]
 
 config :sibilant, :earmark,
   breaks: false,
