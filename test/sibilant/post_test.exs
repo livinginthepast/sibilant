@@ -3,6 +3,10 @@ defmodule Sibilant.PostTest do
 
   alias Sibilant.Post
 
+  describe "load" do
+    test ""
+  end
+
   describe "parse" do
     test "splits front matter from body" do
       """

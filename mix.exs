@@ -23,6 +23,7 @@ defmodule Sibilant.MixProject do
   defp deps do
     [
       {:earmark, "~> 1.4"},
+      {:gestalt, "~> 1.0"},
       {:liquid, ">= 1.0.0-pre"},
       {:yaml_elixir, "~> 2.5"}
     ]
