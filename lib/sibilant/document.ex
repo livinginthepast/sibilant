@@ -1,5 +1,6 @@
 defmodule Sibilant.Document do
   alias Sibilant.Frontmatter
+  alias Sibilant.Renderer
 
   @enforce_keys ~w{body frontmatter type}a
   defstruct ~w{
@@ -14,5 +15,9 @@ defmodule Sibilant.Document do
     [front | [body]] = String.split(content, "\n---\n")
     {:ok, frontmatter} = Frontmatter.parse(front)
     {:ok, new(body: String.trim(body), frontmatter: frontmatter, type: type)}
+  end
+
+  def render(%__MODULE__{} = document) do
+    Renderer.render(document, %{})
   end
 end

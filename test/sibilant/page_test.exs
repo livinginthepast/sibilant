@@ -16,6 +16,12 @@ defmodule Sibilant.PageTest do
     end
   end
 
+  describe "path" do
+    test "joins filename to the root path" do
+      "some.file" |> Page.path() |> assert_eq("test/fixtures/pages/some.file")
+    end
+  end
+
   describe "read" do
     test "reads a file and parses it into a document" do
       Page.read("about.html")

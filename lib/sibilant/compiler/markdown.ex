@@ -4,7 +4,7 @@ defmodule Sibilant.Compiler.Markdown do
   use Gestalt
 
   @impl true
-  def compile(content) do
+  def compile(content, _opts) do
     content
     |> Earmark.as_html(earmark_config())
     |> respond()

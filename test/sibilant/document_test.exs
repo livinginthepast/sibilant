@@ -19,7 +19,7 @@ defmodule Sibilant.DocumentTest do
       * A
       * List
       """
-      |> Sibilant.Document.parse(type: "markdown")
+      |> Document.parse(type: :markdown)
       |> assert_eq({
         :ok,
         %Document{
@@ -31,8 +31,59 @@ defmodule Sibilant.DocumentTest do
             },
             title: nil
           },
-          type: "markdown"
+          type: :markdown
         }
+      })
+    end
+  end
+
+  describe "render" do
+    setup do
+      :ok = Gestalt.replace_config(:sibilant, :root, "test/fixtures", self())
+    end
+
+    test "renders to html" do
+      body = """
+      I am a web page.
+
+      * I
+      * Have
+      * A
+      * List
+
+      {% if true %}
+      This is true.
+      {% else %}
+      But also false.
+      {% endif %}
+      """
+
+      %Document{
+        body: body,
+        frontmatter: %Frontmatter{layout: :default, extra: %{}, title: "I am a page title"},
+        type: :markdown
+      }
+      |> Document.render()
+      |> assert_eq({
+        :ok,
+        """
+        <p>
+        I am a web page.</p>
+        <ul>
+          <li>
+        I  </li>
+          <li>
+        Have  </li>
+          <li>
+        A  </li>
+          <li>
+        List  </li>
+        </ul>
+        <p>
+
+        This is true.
+        </p>
+        """
       })
     end
   end

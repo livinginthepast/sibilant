@@ -9,3 +9,6 @@ config :sibilant, :earmark,
   smartypants: true
 
 config :sibilant, :root, "priv/site"
+
+config :liquid,
+  file_system: {Sibilant.Extra.Liquid.FileSystem, "priv/site/includes"}

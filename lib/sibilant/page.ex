@@ -9,9 +9,10 @@ defmodule Sibilant.Page do
     |> File.ls!()
   end
 
+  def path(filename), do: dirname() |> Path.join(filename)
+
   def read(filename) do
-    path = dirname() |> Path.join(filename)
-    content = File.read!(path)
+    content = dirname() |> Path.join(filename) |> File.read!()
     Document.parse(content, type: FileExtension.parse!(filename))
   end
 

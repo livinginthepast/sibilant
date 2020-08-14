@@ -24,7 +24,7 @@ defmodule Sibilant.MixProject do
     [
       {:earmark, "~> 1.4"},
       {:gestalt, "~> 1.0"},
-      {:liquid, ">= 1.0.0-pre"},
+      {:liquid, github: "bettyblocks/liquid-elixir"},
       {:yaml_elixir, "~> 2.5"}
     ]
   end

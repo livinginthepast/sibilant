@@ -2,10 +2,10 @@ defmodule Sibilant.Compiler.Liquid do
   @behaviour Sibilant.Compiler
 
   @impl true
-  def compile(content) do
+  def compile(content, opts) do
     template = Liquid.Template.parse(content)
 
-    Liquid.Template.render(template, %{})
+    Liquid.Template.render(template, opts)
     |> respond()
   end
 

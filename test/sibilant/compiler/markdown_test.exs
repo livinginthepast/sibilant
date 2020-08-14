@@ -28,7 +28,7 @@ defmodule Sibilant.Compiler.MarkdownTest do
   end
 
   describe "compile" do
-    import Sibilant.Compiler.Markdown, only: [compile: 1]
+    import Sibilant.Compiler.Markdown, only: [compile: 2]
 
     test "compiles markdown to HTML" do
       """
@@ -44,7 +44,7 @@ defmodule Sibilant.Compiler.MarkdownTest do
       1. This is
       1. An ordered list
       """
-      |> compile()
+      |> compile(%{})
       |> assert_eq(
         {:ok,
          """
@@ -83,7 +83,7 @@ defmodule Sibilant.Compiler.MarkdownTest do
 
       And---some other text.
       """
-      |> compile()
+      |> compile(%{})
       |> assert_eq(
         {:ok,
          """

@@ -2,7 +2,7 @@ defmodule Sibilant.Compiler.NoopTest do
   use Sibilant.SimpleCase
 
   describe "compile" do
-    import Sibilant.Compiler.Noop, only: [compile: 1]
+    import Sibilant.Compiler.Noop, only: [compile: 2]
 
     test "returns whatever is passed in" do
       """
@@ -12,7 +12,7 @@ defmodule Sibilant.Compiler.NoopTest do
 
       <div>And HTML</div>
       """
-      |> compile()
+      |> compile(%{})
       |> assert_eq(
         {:ok,
          """

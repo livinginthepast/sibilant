@@ -1,7 +1,7 @@
 defmodule Sibilant.Compiler do
   use Gestalt
 
-  @callback compile(content :: String.t()) ::
+  @callback compile(content :: String.t(), opts :: map) ::
               {:ok, String.t()} | {:error, atom} | {:error, atom, term}
 
   def stack(type) do
