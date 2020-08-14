@@ -67,22 +67,14 @@ defmodule Sibilant.DocumentTest do
       |> assert_eq({
         :ok,
         """
-        <p>
-        I am a web page.</p>
+        <p>I am a web page.</p>
         <ul>
-          <li>
-        I  </li>
-          <li>
-        Have  </li>
-          <li>
-        A  </li>
-          <li>
-        List  </li>
+          <li>I</li>
+          <li>Have</li>
+          <li>A</li>
+          <li>List</li>
         </ul>
-        <p>
-
-        This is true.
-        </p>
+        <p>This is true.</p>
         """
       })
     end

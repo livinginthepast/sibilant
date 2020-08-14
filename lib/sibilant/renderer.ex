@@ -2,7 +2,7 @@ defmodule Sibilant.Renderer do
   @moduledoc false
 
   def render(%{body: body, type: type}, opts) do
-    compiler_stack(type: type)
+    Sibilant.Compiler.stack(type)
     |> Enum.reduce({:ok, body}, fn
       compiler, {:ok, rendered_content} ->
         compiler.compile(rendered_content, opts)
@@ -13,7 +13,10 @@ defmodule Sibilant.Renderer do
       _compiler, {:error, error, term} ->
         {:error, error, term}
     end)
+    |> postprocess()
   end
 
-  defp compiler_stack(type: type), do: Sibilant.Compiler.stack(type)
+  defp postprocess({:error, _, _} = error), do: error
+  defp postprocess({:error, _} = error), do: error
+  defp postprocess({:ok, html}), do: Sibilant.Postprocessor.process(html)
 end

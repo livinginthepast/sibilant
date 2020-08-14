@@ -74,7 +74,6 @@ defmodule Sibilant.LayoutTest do
             <li><a href="/">Root</a></li>
           </ul>
         </nav>
-
         <main><div>Ima webpage!</div></main>
         </body>
         </html>
