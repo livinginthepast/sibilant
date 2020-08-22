@@ -7,9 +7,11 @@ defmodule Sibilant.MixProject do
     [
       app: :sibilant,
       deps: deps(),
+      description: description(),
       dialyzer: dialyzer(),
       elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env()),
+      package: package(),
       start_permanent: Mix.env() == :prod,
       version: @version
     ]
@@ -32,6 +34,12 @@ defmodule Sibilant.MixProject do
     ]
   end
 
+  defp description() do
+    """
+    A static website generator.
+    """
+  end
+
   defp dialyzer do
     [
       plt_add_apps: [:ex_unit],
@@ -42,4 +50,12 @@ defmodule Sibilant.MixProject do
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp package() do
+    [
+      licenses: ["MIT"],
+      maintainers: ["Eric Saxby"],
+      links: %{"GitHub" => "https://github.com/livinginthepast/sibilant"}
+    ]
+  end
 end
