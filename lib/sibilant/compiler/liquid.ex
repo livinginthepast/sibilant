@@ -1,4 +1,5 @@
 defmodule Sibilant.Compiler.Liquid do
+  @moduledoc false
   @behaviour Sibilant.Compiler
 
   @impl true

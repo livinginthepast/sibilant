@@ -1,4 +1,5 @@
 defmodule Sibilant.Page do
+  @moduledoc false
   use Gestalt
 
   alias Sibilant.Document

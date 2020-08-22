@@ -1,4 +1,5 @@
 defmodule Sibilant.Compiler.Markdown do
+  @moduledoc false
   @behaviour Sibilant.Compiler
 
   use Gestalt

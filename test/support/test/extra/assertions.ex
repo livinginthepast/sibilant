@@ -1,4 +1,7 @@
 defmodule Sibilant.Test.Extra.Assertions do
+  @moduledoc """
+  Assertions and helpers to fill out ExUnit.
+  """
   import ExUnit.Assertions
 
   alias Sibilant.Exists
@@ -28,6 +31,7 @@ defmodule Sibilant.Test.Extra.Assertions do
       added = Map.keys(right) -- Map.keys(left)
       missing = Map.keys(left) -- Map.keys(right)
 
+      # credo:disable-for-lines:7
       different =
         (Map.keys(left) -- added)
         |> Enum.reduce([], fn key, acc ->

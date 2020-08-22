@@ -1,4 +1,5 @@
 defmodule Sibilant.Layout do
+  @moduledoc false
   use Gestalt
 
   alias Sibilant.FileExtension

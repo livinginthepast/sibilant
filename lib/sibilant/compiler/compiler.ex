@@ -1,9 +1,11 @@
 defmodule Sibilant.Compiler do
+  @moduledoc false
   use Gestalt
 
   @callback compile(content :: String.t(), opts :: map) ::
               {:ok, String.t()} | {:error, atom} | {:error, atom, term}
 
+  @spec stack(atom()) :: list(module()) | none()
   def stack(type) do
     [
       compiler_for_type(type),

@@ -1,4 +1,6 @@
 defmodule Sibilant.Frontmatter do
+  @moduledoc false
+
   defstruct ~w{
     extra
     layout

@@ -1,4 +1,5 @@
 defmodule Sibilant.Compiler.Noop do
+  @moduledoc false
   @behaviour Sibilant.Compiler
 
   @impl true

@@ -1,4 +1,5 @@
 defmodule Sibilant.Postprocessor do
+  @moduledoc false
   def process(content) do
     content
     |> String.replace("\n\n", "\n")

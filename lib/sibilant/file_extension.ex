@@ -14,7 +14,7 @@ defmodule Sibilant.FileExtension do
 
   use Gestalt
 
-  @spec parse!(binary) :: atom
+  @spec parse!(binary) :: atom | none()
   def parse!(filename) do
     filename
     |> parse()
@@ -31,10 +31,10 @@ defmodule Sibilant.FileExtension do
     |> to_type()
   end
 
-  def file_extension(filename), do: filename |> String.split(".") |> Enum.at(1)
-  def known_extensions(), do: gestalt_config(:sibilant, :file_types, self())
+  defp file_extension(filename), do: filename |> String.split(".") |> Enum.at(1)
+  defp known_extensions(), do: gestalt_config(:sibilant, :file_types, self())
 
-  def to_type(extension) do
+  defp to_type(extension) do
     known_extensions()
     |> Enum.find(fn {_type, config} ->
       extension =~ Keyword.get(config, :pattern)

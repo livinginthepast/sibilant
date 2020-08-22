@@ -1,4 +1,5 @@
 defmodule Sibilant.Document do
+  @moduledoc false
   alias Sibilant.Frontmatter
   alias Sibilant.Renderer
 
