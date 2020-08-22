@@ -2,6 +2,7 @@
 
 source "bin/_support/step.sh"
 
+step "compiling" "MIX_ENV=test mix compile --force --warnings-as-errors || (MIX_ENV=test mix clean && false)"
 step "Tests" "mix test"
 step "Credo" "mix credo"
-step "Dialyzer" "mix dialyzer --quiet --format short"
+xstep "Dialyzer" "mix dialyzer --quiet --format short"
