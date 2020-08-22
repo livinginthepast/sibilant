@@ -25,6 +25,7 @@ defmodule Sibilant.MixProject do
 
   defp deps do
     [
+      {:briefly, "~> 0.3", only: :test},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, ">= 1.0.0", only: [:dev, :test], runtime: false},
       {:earmark, "~> 1.4"},
