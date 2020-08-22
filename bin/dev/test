@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+source "bin/_support/step.sh"
+
+step "Tests" "mix test"
+step "Credo" "mix credo"
+step "Dialyzer" "mix dialyzer --quiet --format short"
