@@ -1,8 +1,8 @@
 defmodule Sibilant.DocumentTest do
   use Sibilant.SimpleCase, async: true
 
-  alias Sibilant.Frontmatter
   alias Sibilant.Document
+  alias Sibilant.Frontmatter
 
   describe "parse" do
     test "splits front matter from body" do

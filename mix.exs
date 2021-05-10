@@ -12,6 +12,7 @@ defmodule Sibilant.MixProject do
       elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
+      preferred_cli_env: [credo: :test, dialyzer: :test],
       start_permanent: Mix.env() == :prod,
       version: @version
     ]
@@ -45,7 +46,7 @@ defmodule Sibilant.MixProject do
     [
       plt_add_apps: [:ex_unit],
       plt_add_deps: :app_tree,
-      plt_file: {:no_warn, "priv/plts/gestalt.plt"}
+      plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
     ]
   end
 

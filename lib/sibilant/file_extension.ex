@@ -14,33 +14,46 @@ defmodule Sibilant.FileExtension do
 
   use Gestalt
 
+  @dialyzer {:nowarn_function, parse!: 1}
+
+  @type t() :: {:ok, atom} | {:error, :unknown_extension}
+  @type matcher() :: [compiler: module(), pattern: Regex.t()]
+
   @spec parse!(binary) :: atom | none()
   def parse!(filename) do
     filename
     |> parse()
     |> case do
-      {:ok, type} -> type
-      {:error, error} -> raise(error)
+      {:ok, type} when is_atom(type) -> type
+      {:error, _error} -> raise(RuntimeError, "Unable to parse file extension")
     end
   end
 
-  @spec parse(binary) :: {:ok, atom} | {:error, :unknown_extension}
+  @spec parse(binary) :: t()
   def parse(filename) do
     filename
-    |> file_extension
+    |> file_extension()
     |> to_type()
   end
 
+  @spec known_extensions() :: keyword(matcher())
+  def known_extensions(), do: gestalt_config(:sibilant, :file_types, self())
+
   defp file_extension(filename), do: filename |> String.split(".") |> Enum.at(1)
-  defp known_extensions(), do: gestalt_config(:sibilant, :file_types, self())
+
+  defp to_type(nil), do: {:error, :unknown_file_type}
 
   defp to_type(extension) do
     known_extensions()
-    |> Enum.find(fn {_type, config} ->
-      extension =~ Keyword.get(config, :pattern)
+    |> Enum.find(fn
+      {type, config} when is_atom(type) ->
+        extension =~ Keyword.get(config, :pattern, "")
+
+      _ ->
+        false
     end)
     |> case do
-      {type, _} -> {:ok, type}
+      {type, _} when is_atom(type) -> {:ok, type}
       _ -> {:error, :unknown_file_type}
     end
   end
